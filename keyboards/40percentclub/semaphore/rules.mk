@@ -36,3 +36,4 @@ HD44780_ENABLE = no 		    # Enable support for HD44780 based LCDs (+400)
 SPLIT_KEYBOARD = yes
 
 LAYOUTS = ortho_5x12
+TAP_DANCE_ENABLE = yes

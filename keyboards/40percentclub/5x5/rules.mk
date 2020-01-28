@@ -32,3 +32,4 @@ FAUXCLICKY_ENABLE = no      # Use buzzer to emulate clicky switches
 HD44780_ENABLE = no 				# Enable support for HD44780 based LCDs (+400)
 
 LAYOUTS = ortho_5x5  ortho_5x10  ortho_5x15
+TAP_DANCE_ENABLE = yes
