@@ -19,8 +19,8 @@ enum {
 //Tap dance enums
 enum {
   SPC_ENT_SFT = 0,
-  _MIN = 1,
-  _EQL = 2,
+  _HOME = 1,
+  _END = 2,
   _INS = 3,
 };
 
@@ -34,9 +34,9 @@ void spc_reset (qk_tap_dance_state_t *state, void *user_data);
 qk_tap_dance_action_t tap_dance_actions[] = {
   //Tap once for Esc, twice for Caps Lock
   [SPC_ENT_SFT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, spc_finished, spc_reset),
-  [_MIN] = ACTION_TAP_DANCE_DOUBLE(KC_MINS, LSFT(KC_MINS)),
-  [_EQL] = ACTION_TAP_DANCE_DOUBLE(KC_EQL, LSFT(KC_EQL)),
-  [_INS] = ACTION_TAP_DANCE_DOUBLE(KC_EQL, LSFT(KC_INS)),
+  [_HOME] = ACTION_TAP_DANCE_DOUBLE(KC_HOME, LSFT(KC_HOME)),
+  [_END] = ACTION_TAP_DANCE_DOUBLE(KC_END, LSFT(KC_END)),
+  [_INS] = ACTION_TAP_DANCE_DOUBLE(KC_INS, LSFT(KC_INS)),
 };
 
 #define _QW 0
@@ -59,9 +59,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
   [_QW] = LAYOUT_ortho_5x15(
-  KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,     KC_HOME, TD(_INS),KC_END,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_PGUP,
+  KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    TD(_HOME),TD(_INS),TD(_END),  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_PGUP,
   KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,     KC_LBRC, KC_RBRC, KC_BSLS,   KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_PGDN,
-  KC_LSFT, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,     KC_GRV,  TD(_MIN),TD(_EQL),  KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+  KC_LSFT, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,     KC_GRV,  KC_MINS, KC_EQL,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
   KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,     XXXXXXX, KC_UP,   KC_DEL,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
   MO(_FN), KC_LGUI, KC_LALT, KC_LCPO, KC_SPC,  MO(_FN),  KC_LEFT, KC_DOWN, KC_RGHT,   KC_BSPC, KC_SPC,  KC_RCPC, KC_RALT, KC_RGUI, TG(_FN)
   ),
