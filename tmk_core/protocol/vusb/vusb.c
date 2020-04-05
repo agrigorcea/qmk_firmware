@@ -158,10 +158,12 @@ typedef struct {
 } __attribute__((packed)) vusb_mouse_report_t;
 
 static void send_mouse(report_mouse_t *report) {
+#if defined(MOUSE_ENABLE)
     vusb_mouse_report_t r = {.report_id = REPORT_ID_MOUSE, .report = *report};
     if (usbInterruptIsReady3()) {
         usbSetInterrupt3((void *)&r, sizeof(vusb_mouse_report_t));
     }
+#endif
 }
 
 #ifdef EXTRAKEY_ENABLE
@@ -519,11 +521,7 @@ const PROGMEM usbConfigurationDescriptor_t usbConfigurationDescriptor = {
 #    endif
         .bConfigurationValue = 0x01,
         .iConfiguration      = 0x00,
-#    if USB_CFG_IS_SELF_POWERED
-        .bmAttributes        = (1 << 7) | USBATTR_SELFPOWER,
-#    else
-        .bmAttributes        = (1 << 7),
-#    endif
+        .bmAttributes        = (1 << 7) | USBATTR_REMOTEWAKE,
         .bMaxPower           = USB_MAX_POWER_CONSUMPTION / 2
     },
 
